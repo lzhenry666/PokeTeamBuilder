@@ -1,0 +1,200 @@
+:root {
+  --color1: rgb(0, 231, 255);
+  --color2: rgb(255, 0, 231);
+  --back: url(https://cdn2.bulbagarden.net/upload/1/17/Cardback.jpg);
+  --text-color: #000; }
+
+@keyframes shake {
+  0%,
+    100% {
+    transform: translateX(0); }
+  10%,
+    30%,
+    50%,
+    70%,
+    90% {
+    transform: translateX(-10px); }
+  20%,
+    40%,
+    60%,
+    80% {
+    transform: translateX(10px); } }
+.tremer {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; }
+
+#filtro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; }
+
+#filtro {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none; }
+
+.options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; }
+
+html, body {
+  height: 100%;
+  background-color: #333844;
+  padding: 0;
+  z-index: 1;
+  transform: translate3d(0, 0, 0.1px); }
+
+body {
+  color: white;
+  background-color: #333844;
+  font-family: "Heebo", sans-serif;
+  text-align: center; }
+
+h1 {
+  display: block;
+  margin: 30px 0; }
+
+p {
+  margin-top: 5px;
+  font-weight: 200; }
+
+button {
+  animation: 1.5s ease infinite alternate running shimmer;
+  background: linear-gradient(90deg, #e17dff 0%, #64E3FF 30%, #8082f8 85%);
+  background-size: 200% 100%;
+  border: none;
+  border-radius: 6px;
+  box-shadow: -2px -2px 10px rgba(211, 113, 233, 0.5), 2px 2px 10px rgba(144, 148, 255, 0.5);
+  color: #170F1E;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 670;
+  line-height: 24px;
+  overflow: hidden;
+  padding: 12px 24px;
+  position: relative;
+  text-decoration: none;
+  transition: 0.2s; }
+  button svg {
+    left: -20px;
+    opacity: 0.5;
+    position: absolute;
+    top: -2px;
+    transition: 0.5s cubic-bezier(0.5, -0.5, 0.5, 1.5); }
+  button:hover svg {
+    opacity: 0.8;
+    transform: translateX(50px) scale(1.5); }
+  button:hover {
+    transform: rotate(-3deg); }
+  button:active {
+    transform: scale(0.95) rotate(-3deg); }
+
+@keyframes shimmer {
+  to {
+    background-size: 100% 100%;
+    box-shadow: -2px -2px 6px rgba(191, 106, 231, 0.5), 2px 2px 6px rgba(144, 148, 255, 0.5); } }
+.share, .webshare {
+  display: none; }
+
+.social .share {
+  display: flex;
+  flex-wrap: wrap;
+  user-select: none; }
+
+.webshareapi .webshare {
+  display: block; }
+
+.share, .share li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+.share a {
+  display: block;
+  text-decoration: none;
+  padding: 0.3em 1em 0.3em 0.3em;
+  margin: 0.2em;
+  color: #fff;
+  background-color: #557;
+  border-radius: 1.5em;
+  outline: 0 none; }
+
+.share svg {
+  width: 1.2em;
+  height: 1.2em;
+  padding: 0;
+  margin: 0 0.2em 0 0;
+  vertical-align: middle;
+  background-color: #fff;
+  border: 0.4em solid #fff;
+  border-radius: 50%;
+  overflow: visible;
+  transition: transform 0.2s cubic-bezier(0.2, -1.3, 0.5, 5); }
+
+.share a:hover, .share a:focus {
+  background-color: #779; }
+
+.share a:hover svg, .share a:focus svg {
+  transform: scale(1.15); }
+
+#card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  justify-content: center; }
+
+.pokename {
+  font-size: 2.5em;
+  font-weight: 600;
+  color: var(--text-color);
+  height: 15%;
+  margin-top: 0.5em; }
+
+.card {
+  background: url("https://i.pinimg.com/564x/7d/bd/b3/7dbdb375ede9e9db633e81f3191c926b.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 5% / 3.5%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  width: 25%;
+  height: 100%;
+  margin: 5em 3em 0.5em 0em; }
+  .card > .card-front {
+    margin-top: 2em;
+    width: 100%;
+    height: 65%;
+    justify-content: center;
+    align-items: center;
+    background-size: cover; }
+    .card > .card-front .pokemon-img {
+      width: 80%;
+      height: 70%; }
+  .card > .card-back {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover; }
+    .card > .card-back .infos {
+      font: 0.85em courier;
+      color: var(--text-color);
+      width: 85%;
+      font-weight: bold; }
+
+.popup-evolucoes {
+  display: none; }
+
+/*# sourceMappingURL=style.css.map */
