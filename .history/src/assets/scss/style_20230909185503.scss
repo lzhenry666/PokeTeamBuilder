@@ -245,24 +245,18 @@ button {
         height: 60vh;
         justify-content: center;
         align-items: center;
-        position: relative;
         .pokemon-img {
           width: 80%;
           height: 50%;
-          margin-top: -1rem;  // Move a imagem um pouco para cima
-
+        }
+        .infos{
+          margin:3rem 50rem  0 0;
+          font:0.85em courier;
+          color:var(--text-color);
+          width:85%;
+          font-weight: 600;
+          }
       }
-
-
-      .infos {
-        position: absolute;
-        margin: 5rem 0 0 3rem;  // 1rem para baixo e 1rem para a direita
-        font: 0.85em courier;
-        color: var(--text-color);
-        width: 85%;
-        font-weight: 600;
-      }
-    }
     >.card-back {
       height: 20%;
       display: flex;
@@ -275,8 +269,8 @@ button {
     }
 
 
-  }
 
+}
 
 
 

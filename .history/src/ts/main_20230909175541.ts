@@ -17,7 +17,7 @@ function gerarCards(): void {
       <div class="slot card">
         <span class="pokename"></span>
         <div class="card-front">
-          <img src="../../pokebolaa.gif" alt="" class="pokemon-img">
+          <img src="" alt="" class="pokemon-img">
           <div class="infos"></div>
         </div>
         <div class="card-back">
@@ -39,6 +39,18 @@ const btnGerarAleatorio = document.getElementById("gerar-aleatorio") as HTMLButt
 const btnGerarTimeAleatorio = document.getElementById("gerar-time-aleatorio") as HTMLButtonElement;
 const filtro = document.getElementById("filtro") as HTMLInputElement;
 const btnReset = document.getElementById("reset") as HTMLButtonElement;
+
+
+
+// Chama a função para gerar os cards
+
+
+
+
+
+
+
+
 
 
 
@@ -198,17 +210,15 @@ async function compartilharTime() {
           slot.querySelector('.pokename')!.innerHTML = ` ${pokemonName}`;
 
           slot.querySelector('.infos')!.innerHTML = `
-          <ul>
-            <li>Peso: ${pokemonWeight}</li>
-            <li>Altura: ${pokemonHeight}</li>
-            <li>Tipo: ${pokemonType}</li>
-            <li>HP: ${pokemonHp}</li>
-            <li>Ataque: ${pokemonAttack}</li>
-            <li>Defesa: ${pokemonDefense}</li>
-            <li>Ataque Especial: ${pokemonEspecialAttack}</li>
-            <li>Defesa Especial: ${pokemonEspecialDefense}</li>
-            <li>Velocidade: ${pokemonSpeed}</li>
-          </ul>`;
+         <p> pokemonWeight: ${pokemonWeight}
+          pokemonHeight: ${pokemonHeight}
+            pokemonType: ${pokemonType}
+            pokemonHp: ${pokemonHp}
+            pokemonAttack: ${pokemonAttack}
+            pokemonDefense: ${pokemonDefense}
+            pokemonEspecialAttack: ${pokemonEspecialAttack}
+            pokemonEspecialDefense: ${pokemonEspecialDefense}
+            pokemonSpeed: ${pokemonSpeed}`;
           slot.querySelector('img')!.src = pokemonImg;
           slot.querySelector('img')!.alt = pokemonName;
           timeCompleto = false;

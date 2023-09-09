@@ -26,7 +26,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; }
+  gap: 10px;
+  margin: 0 0 1em 0; }
 
 #filtro {
   padding: 8px;
@@ -158,7 +159,6 @@ button {
   margin-top: 0.5em; }
 
 .card {
-  background: url("https://i.pinimg.com/564x/7d/bd/b3/7dbdb375ede9e9db633e81f3191c926b.jpg");
   background-size: cover;
   background-position: center;
   border-radius: 5% / 3.5%;
@@ -169,30 +169,36 @@ button {
   align-items: center;
   background-size: cover;
   background-position: center;
-  width: 25%;
+  width: 20%;
   height: 100%;
-  margin: 5em 3em 0.5em 0em; }
+  margin: 5em 3em 0.5em 0em;
+  background: url("https://i.pinimg.com/564x/7d/bd/b3/7dbdb375ede9e9db633e81f3191c926b.jpg");
+  background-size: cover;
+  position: relative; }
   .card > .card-front {
     margin-top: 2em;
     width: 100%;
-    height: 65%;
+    height: 60vh;
     justify-content: center;
     align-items: center;
-    background-size: cover; }
+    position: relative; }
     .card > .card-front .pokemon-img {
       width: 80%;
-      height: 70%; }
+      height: 50%;
+      margin-top: -1rem; }
+    .card > .card-front .infos {
+      position: absolute;
+      margin: 5rem 0 0 3rem;
+      font: 0.85em courier;
+      color: var(--text-color);
+      width: 85%;
+      font-weight: 600; }
   .card > .card-back {
     height: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-size: cover; }
-    .card > .card-back .infos {
-      font: 0.85em courier;
-      color: var(--text-color);
-      width: 85%;
-      font-weight: bold; }
 
 .popup-evolucoes {
   display: none; }

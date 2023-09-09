@@ -229,7 +229,6 @@ button {
     background-position: center;
     width: 20%;
     height: 100%;
-    margin: 5em 3em 0.5em 0em;
     background: url('https://i.pinimg.com/564x/7d/bd/b3/7dbdb375ede9e9db633e81f3191c926b.jpg');
     background-size: cover;
 
@@ -245,24 +244,18 @@ button {
         height: 60vh;
         justify-content: center;
         align-items: center;
-        position: relative;
         .pokemon-img {
           width: 80%;
           height: 50%;
-          margin-top: -1rem;  // Move a imagem um pouco para cima
-
+        }
+        .infos{
+          margin:0 ;
+          font:0.85em courier;
+          color:var(--text-color);
+          width:85%;
+          font-weight: 600;
+          }
       }
-
-
-      .infos {
-        position: absolute;
-        margin: 5rem 0 0 3rem;  // 1rem para baixo e 1rem para a direita
-        font: 0.85em courier;
-        color: var(--text-color);
-        width: 85%;
-        font-weight: 600;
-      }
-    }
     >.card-back {
       height: 20%;
       display: flex;
@@ -275,8 +268,8 @@ button {
     }
 
 
-  }
 
+}
 
 
 

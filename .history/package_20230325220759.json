@@ -4,8 +4,7 @@
   "description": "Build and Share your poke team",
   "main": "index.js",
   "scripts": {
-    "test": "testar",
-    "watch": "tsc --watch"
+    "test": "testar"
   },
   "keywords": [
     "pokemon",

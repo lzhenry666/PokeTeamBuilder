@@ -37,7 +37,6 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin: 0 0 1em 0;
   }
 
   #filtro {
@@ -217,6 +216,7 @@ button {
 
   }
   .card {
+    background: url('https://i.pinimg.com/564x/7d/bd/b3/7dbdb375ede9e9db633e81f3191c926b.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 5% / 3.5%;
@@ -227,42 +227,42 @@ button {
     align-items: center;
     background-size: cover;
     background-position: center;
-    width: 20%;
+    width: 25%;
     height: 100%;
     margin: 5em 3em 0.5em 0em;
-    background: url('https://i.pinimg.com/564x/7d/bd/b3/7dbdb375ede9e9db633e81f3191c926b.jpg');
-    background-size: cover;
-
-    position: relative;
 
 
 
 
-    >.card-front {
+
+    .card-front {
       margin-top: 2em;
-        width: 100%;
+      width: 100%;
+      height: 65%;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
 
-        height: 60vh;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        .pokemon-img {
+      .pokemon-img {
+        width: 80%;
+        height: 70%;
+        &::after {
+          content: ""; // Conteúdo vazio por padrão
+          display: block; // Torna o elemento um bloco
           width: 80%;
-          height: 50%;
-          margin-top: -1rem;  // Move a imagem um pouco para cima
+          height: 70%;
+          background: url('../../../pokebolaa.gif') no-repeat  ; // Imagem da Pokébola
+          background-size: contain; // Ajusta o tamanho da imagem para caber no elemento
+          opacity: 0; // Inicialmente invisível
+        }
 
-      }
-
-
-      .infos {
-        position: absolute;
-        margin: 5rem 0 0 3rem;  // 1rem para baixo e 1rem para a direita
-        font: 0.85em courier;
-        color: var(--text-color);
-        width: 85%;
-        font-weight: 600;
+        &.no-image::after {
+          opacity: 1; // Torna visível quando a classe "no-image" é adicionada
+        }
       }
     }
+
+
     >.card-back {
       height: 20%;
       display: flex;
@@ -270,13 +270,18 @@ button {
     align-items: center;
     background-size: cover;
 
-
+.infos{
+  font:0.85em courier;
+  color:var(--text-color);
+  width:85%;
+  font-weight: bold ;
+  }
 
     }
 
 
-  }
 
+}
 
 
 

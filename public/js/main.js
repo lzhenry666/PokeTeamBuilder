@@ -8,6 +8,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+function gerarCards() {
+    // Seleciona o elemento com o ID 'card-container'
+    const cardContainer = document.getElementById('card-container');
+    // Verifica se o elemento existe
+    if (!cardContainer) {
+        console.error('Elemento card-container não encontrado');
+        return;
+    }
+    // Inicializa uma variável para armazenar o HTML gerado
+    let cardsHTML = '';
+    // Gera o HTML 6 vezes
+    for (let i = 0; i < 6; i++) {
+        cardsHTML += `
+      <div class="slot card">
+        <span class="pokename"></span>
+        <div class="card-front">
+          <img src="../../pokebolaa.gif" alt="" class="pokemon-img">
+          <div class="infos"></div>
+        </div>
+        <div class="card-back">
+        </div>
+      </div>
+    `;
+    }
+    // Insere o HTML gerado dentro do elemento 'card-container'
+    cardContainer.innerHTML = cardsHTML;
+}
+gerarCards();
 const listaPokemons = document.getElementById("lista-pokemons");
 const slots = document.querySelectorAll(".slot");
 const btnChoose = document.getElementById("choose");
@@ -163,15 +191,17 @@ function gerarPokemonAleatorio() {
                 if (!slot.querySelector('.infos').innerHTML) {
                     slot.querySelector('.pokename').innerHTML = ` ${pokemonName}`;
                     slot.querySelector('.infos').innerHTML = `
-         <p> pokemonWeight: ${pokemonWeight}
-          pokemonHeight: ${pokemonHeight}
-            pokemonType: ${pokemonType}
-            pokemonHp: ${pokemonHp}
-            pokemonAttack: ${pokemonAttack}
-            pokemonDefense: ${pokemonDefense}
-            pokemonEspecialAttack: ${pokemonEspecialAttack}
-            pokemonEspecialDefense: ${pokemonEspecialDefense}
-            pokemonSpeed: ${pokemonSpeed}`;
+          <ul>
+            <li>Peso: ${pokemonWeight}</li>
+            <li>Altura: ${pokemonHeight}</li>
+            <li>Tipo: ${pokemonType}</li>
+            <li>HP: ${pokemonHp}</li>
+            <li>Ataque: ${pokemonAttack}</li>
+            <li>Defesa: ${pokemonDefense}</li>
+            <li>Ataque Especial: ${pokemonEspecialAttack}</li>
+            <li>Defesa Especial: ${pokemonEspecialDefense}</li>
+            <li>Velocidade: ${pokemonSpeed}</li>
+          </ul>`;
                     slot.querySelector('img').src = pokemonImg;
                     slot.querySelector('img').alt = pokemonName;
                     timeCompleto = false;
@@ -205,7 +235,6 @@ function gerarTimeAleatorio() {
         }
     });
 }
-carregarListaDePokemons();
 // Função para fazer a tela tremer com um efeito CSS
 function tremor(element) {
     element.classList.add("tremer");
@@ -240,3 +269,4 @@ function filtrarPokemons() {
   }
 }
 */
+carregarListaDePokemons();

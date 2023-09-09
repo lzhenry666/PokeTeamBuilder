@@ -1,3 +1,13 @@
+const listaPokemons = document.getElementById("lista-pokemons") as HTMLSelectElement;
+const slots = document.querySelectorAll(".slot") as NodeListOf<HTMLDivElement>;
+const btnChoose = document.getElementById("choose") as HTMLButtonElement;
+const btnCompartilhar = document.getElementById("compartilhar") as HTMLButtonElement;
+const btnGerarAleatorio = document.getElementById("gerar-aleatorio") as HTMLButtonElement;
+const btnGerarTimeAleatorio = document.getElementById("gerar-time-aleatorio") as HTMLButtonElement;
+const filtro = document.getElementById("filtro") as HTMLInputElement;
+const btnReset = document.getElementById("reset") as HTMLButtonElement;
+
+
 function gerarCards(): void {
   // Seleciona o elemento com o ID 'card-container'
   const cardContainer = document.getElementById('card-container');
@@ -17,7 +27,7 @@ function gerarCards(): void {
       <div class="slot card">
         <span class="pokename"></span>
         <div class="card-front">
-          <img src="../../pokebolaa.gif" alt="" class="pokemon-img">
+          <img src="" alt="" class="pokemon-img">
           <div class="infos"></div>
         </div>
         <div class="card-back">
@@ -30,16 +40,8 @@ function gerarCards(): void {
   cardContainer.innerHTML = cardsHTML;
 }
 
+// Chama a função para gerar os cards
 gerarCards();
-const listaPokemons = document.getElementById("lista-pokemons") as HTMLSelectElement;
-const slots = document.querySelectorAll(".slot") as NodeListOf<HTMLDivElement>;
-const btnChoose = document.getElementById("choose") as HTMLButtonElement;
-const btnCompartilhar = document.getElementById("compartilhar") as HTMLButtonElement;
-const btnGerarAleatorio = document.getElementById("gerar-aleatorio") as HTMLButtonElement;
-const btnGerarTimeAleatorio = document.getElementById("gerar-time-aleatorio") as HTMLButtonElement;
-const filtro = document.getElementById("filtro") as HTMLInputElement;
-const btnReset = document.getElementById("reset") as HTMLButtonElement;
-
 
 
 
@@ -71,12 +73,24 @@ async function carregarListaDePokemons() {
     console.error(error);
   }
 }
-
+const pokemonImg = document.querySelectorAll('.pokemon-img') as NodeListOf<HTMLImageElement>;
+// Quando nenhum Pokémon é selecionado
+pokemonImg.forEach((img) => {
+  img.classList.add('no-image');
+});
 
 async function escolherPokemon(event : Event) {
+
+  let pokemonImg = document.querySelector('.pokemon-img')  as HTMLImageElement;
+
+    if (pokemonImg) {
+      pokemonImg.classList.remove('no-image');
+    }
+
   event.preventDefault();
 
   let pokemonName = filtro.value;
+// Quando um Pokémon é selecionado
 
   if (!pokemonName) {
     alert("Por favor, selecione um Pokémon.");
@@ -198,17 +212,15 @@ async function compartilharTime() {
           slot.querySelector('.pokename')!.innerHTML = ` ${pokemonName}`;
 
           slot.querySelector('.infos')!.innerHTML = `
-          <ul>
-            <li>Peso: ${pokemonWeight}</li>
-            <li>Altura: ${pokemonHeight}</li>
-            <li>Tipo: ${pokemonType}</li>
-            <li>HP: ${pokemonHp}</li>
-            <li>Ataque: ${pokemonAttack}</li>
-            <li>Defesa: ${pokemonDefense}</li>
-            <li>Ataque Especial: ${pokemonEspecialAttack}</li>
-            <li>Defesa Especial: ${pokemonEspecialDefense}</li>
-            <li>Velocidade: ${pokemonSpeed}</li>
-          </ul>`;
+         <p> pokemonWeight: ${pokemonWeight}
+          pokemonHeight: ${pokemonHeight}
+            pokemonType: ${pokemonType}
+            pokemonHp: ${pokemonHp}
+            pokemonAttack: ${pokemonAttack}
+            pokemonDefense: ${pokemonDefense}
+            pokemonEspecialAttack: ${pokemonEspecialAttack}
+            pokemonEspecialDefense: ${pokemonEspecialDefense}
+            pokemonSpeed: ${pokemonSpeed}`;
           slot.querySelector('img')!.src = pokemonImg;
           slot.querySelector('img')!.alt = pokemonName;
           timeCompleto = false;
@@ -239,7 +251,7 @@ async function compartilharTime() {
     }
   }
 
-
+carregarListaDePokemons();
 
 
 // Função para fazer a tela tremer com um efeito CSS
@@ -279,4 +291,3 @@ function filtrarPokemons() {
   }
 }
 */
-carregarListaDePokemons();
