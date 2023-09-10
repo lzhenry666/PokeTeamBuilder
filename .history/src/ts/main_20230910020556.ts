@@ -132,7 +132,7 @@ async function buscarPreEvolucao(pokemonName : string) {
       const evolutionChain_pre_name = pokemonData.data.evolves_from_species?.name;
       console.log(`🚀 ~ file: main.ts:134 ~ buscarPreEvolucao ~ evolutionChain_pre_name:`, evolutionChain_pre_name);
       if (evolutionChain_pre_name === null || evolutionChain_pre_name === undefined) {
-        return "egg.png";
+        return "../../egg.png";
       }
       // Em seguida, obtenha os dados da cadeia de evolução
       const evolutionData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${evolutionChain_pre_name}`);

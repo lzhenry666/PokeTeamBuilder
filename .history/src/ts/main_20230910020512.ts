@@ -30,10 +30,10 @@ function gerarCards(): void {
         <!--.pre-evolution-title Stage 2-->
         <div class="card-avatar pre-evolution">
         <span class="stage">Stage 2</span>
-        <img src="pokebolaa.gif" alt="" class="pre-pokemon">
+        <img src="../../pokebolaa.gif" alt="" class="pre-pokemon">
         </div>
         <div class="card-avatar">
-        <img src="pokebolaa.gif" alt="" class="pokemon-img">
+        <img src="../../pokebolaa.gif" alt="" class="pokemon-img">
         </div>
       </div>
       <div class="card-props"><p class="pokemonType"> Pokémon type:...</p><p class="pokemonHeight"> Length 5' 7"</p>, <p  class="pokemonWeight">Weight:200 lbs</p></div>
@@ -132,7 +132,7 @@ async function buscarPreEvolucao(pokemonName : string) {
       const evolutionChain_pre_name = pokemonData.data.evolves_from_species?.name;
       console.log(`🚀 ~ file: main.ts:134 ~ buscarPreEvolucao ~ evolutionChain_pre_name:`, evolutionChain_pre_name);
       if (evolutionChain_pre_name === null || evolutionChain_pre_name === undefined) {
-        return "egg.png";
+        return "../../egg.png";
       }
       // Em seguida, obtenha os dados da cadeia de evolução
       const evolutionData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${evolutionChain_pre_name}`);
@@ -330,7 +330,7 @@ function resetarTime() {
       pokemonImgElement.src = 'pokebolaa.gif';
       pokemonImgElement.alt = '';
       const pokemonImgElement_ = slot.querySelector('.pre-pokemon') as HTMLImageElement;
-      pokemonImgElement_.src = 'pokebolaa.gif';
+      pokemonImgElement_.src = '.pokebolaa.gif';
       pokemonImgElement_.alt = '';
       (slot.querySelector('.pokename') as HTMLDivElement).innerHTML = '';
       (slot.querySelector('.pokemonWeight') as HTMLDivElement).innerHTML = ``;
