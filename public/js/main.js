@@ -46,7 +46,7 @@ function gerarCards() {
       <div class="card-props"><p class="pokemonType"> Pokémon type:...</p><p class="pokemonHeight"> Length 5' 7"</p>, <p  class="pokemonWeight">Weight:200 lbs</p></div>
       <div class="card-body">
         <div class="power-container">
-          <h3 class="power-stats"> Pokémon Power Stats </h3>
+          <h3 class="power-stats"> Pokémon Stats </h3>
           <p class="power-content pokemonAttack"></p>
           <p class="power-content pokemonDefense"></p>
           <p class="power-content pokemonEspecialAttack"></p>
