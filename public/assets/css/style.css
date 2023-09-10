@@ -169,12 +169,67 @@ button {
   box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
   padding: 0 15px; }
 
-.card.florizard {
-  background: linear-gradient(to right, #3ca55c, #b5ac49);
-  background: linear-gradient(to left, #11998e, #38ef7d); }
-
-.card.blastoise {
-  background: linear-gradient(to left, #24c6dc, #514a9d); }
+@keyframes holoSparkle {
+  0%, 100% {
+    opacity: .75;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(1.25); }
+  5%, 8% {
+    opacity: 1;
+    background-position: 40% 40%;
+    filter: brightness(0.8) contrast(1.2); }
+  13%, 16% {
+    opacity: .5;
+    background-position: 50% 50%;
+    filter: brightness(1.2) contrast(0.8); }
+  35%, 38% {
+    opacity: 1;
+    background-position: 60% 60%;
+    filter: brightness(1) contrast(1); }
+  55% {
+    opacity: .33;
+    background-position: 45% 45%;
+    filter: brightness(1.2) contrast(1.25); } }
+@keyframes holoGradient {
+  0%, 100% {
+    opacity: 0.5;
+    background-position: 50% 50%;
+    filter: brightness(0.5) contrast(1); }
+  5%, 9% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(0.75) contrast(1.25); }
+  13%, 17% {
+    background-position: 0% 0%;
+    opacity: .88; }
+  35%, 39% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(0.5) contrast(1); }
+  55% {
+    background-position: 0% 0%;
+    opacity: 1;
+    filter: brightness(0.75) contrast(1.25); } }
+@keyframes holoCard {
+  0%, 100% {
+    transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg); }
+  5%, 8% {
+    transform: rotateZ(0deg) rotateX(6deg) rotateY(-20deg); }
+  13%, 16% {
+    transform: rotateZ(0deg) rotateX(-9deg) rotateY(32deg); }
+  35%, 38% {
+    transform: rotateZ(3deg) rotateX(12deg) rotateY(20deg); }
+  55% {
+    transform: rotateZ(-3deg) rotateX(-12deg) rotateY(-27deg); } }
+.card.animated {
+  transition: none;
+  animation: holoCard 12s ease 0s  infinite; }
+  .card.animated:before {
+    transition: none;
+    animation: holoGradient 12s ease 0s infinite; }
+  .card.animated:after {
+    transition: none;
+    animation: holoSparkle 12s ease 0s infinite; }
 
 .card-header {
   width: 100%;

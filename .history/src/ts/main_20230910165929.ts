@@ -110,7 +110,6 @@ async function carregarListaDePokemons() {
       let pokemonName = filtro.value;
       console.log(`🚀 ~ file: main.ts:109 ~ btnChoose.addEventListener ~ pokemonName:`, pokemonName);
       await escolherPokemon(NaN, pokemonName);
-      filtro.value = "";
     });
         btnCompartilhar.addEventListener("click", compartilharTime);
     btnGerarAleatorio.addEventListener("click", gerarPokemonAleatorio);

@@ -219,6 +219,7 @@ button {
 
 .card{
   margin:10px auto;
+  //max-height:500px;
   width:400px;
   background:grey;
   border-radius:5px;
@@ -292,19 +293,6 @@ button {
   }
 }
 
-
-.card.animated {
-  transition: none;
-  animation: holoCard 12s ease 0s  infinite;
-  &:before {
-    transition: none;
-    animation: holoGradient 12s ease 0s infinite;
-  }
-  &:after {
-    transition: none;
-    animation: holoSparkle 12s ease 0s infinite;
-  }
-}
 
 
 .card-header{

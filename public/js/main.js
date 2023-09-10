@@ -26,9 +26,9 @@ function gerarCards() {
     let cardsHTML = '';
     // Gera o HTML 6 vezes
     for (let i = 0; i < 6; i++) {
-        cardsHTML += `<div id="bg" class="card">
+        cardsHTML += `<div id="bg" class="card  animated">
     <div class="card-header">
-      <div class="sub-header"><span class="header-desc">Evolves from Charmeleon</span><span class="header-desc">Put Charizard on the stage | Pokemon</span></div>
+      <div class="sub-header"><span class="header-desc">Evolves from </span>|<span class="header-desc"> to  </span></div>
       <div class="title">
         <h2 class="pokename">...</h2><p class="pokemonHp"> 0HP</p>
         <div class="type  type-icon icon-fire"></div>
@@ -36,7 +36,7 @@ function gerarCards() {
       <div class="avatar-container">
         <!--.pre-evolution-title Stage 2-->
         <div class="card-avatar pre-evolution">
-        <span class="stage">Stage 2</span>
+        <span class="stage">Pre form</span>
         <img src="pokebolaa.gif" alt="" class="pre-pokemon">
         </div>
         <div class="card-avatar">
@@ -109,6 +109,7 @@ function carregarListaDePokemons() {
                 let pokemonName = filtro.value;
                 console.log(`🚀 ~ file: main.ts:109 ~ btnChoose.addEventListener ~ pokemonName:`, pokemonName);
                 yield escolherPokemon(NaN, pokemonName);
+                filtro.value = "";
             }));
             btnCompartilhar.addEventListener("click", compartilharTime);
             btnGerarAleatorio.addEventListener("click", gerarPokemonAleatorio);
@@ -129,17 +130,20 @@ function buscarPreEvolucao(pokemonName) {
             // Primeiro, obtenha o ID da cadeia de evolução do Pokémon
             const pokemonData = yield axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`);
             const evolutionChain_pre_name = (_a = pokemonData.data.evolves_from_species) === null || _a === void 0 ? void 0 : _a.name;
-            console.log(`🚀 ~ file: main.ts:134 ~ buscarPreEvolucao ~ evolutionChain_pre_name:`, evolutionChain_pre_name);
-            if (evolutionChain_pre_name === null || evolutionChain_pre_name === undefined) {
-                return "egg.png";
+            // Verifique se evolutionChain_pre_name é null ou undefined aqui
+            if (!evolutionChain_pre_name) {
+                return { prevEvolution_img: "egg.png", evolutionChain_pre_name: 'poke baby' };
             }
-            // Em seguida, obtenha os dados da cadeia de evolução
             const evolutionData = yield axios.get(`https://pokeapi.co/api/v2/pokemon/${evolutionChain_pre_name}`);
-            const prevEvolution = evolutionData.data.sprites.front_default;
-            return prevEvolution;
+            const prevEvolution_img = evolutionData.data.sprites.front_default;
+            if (!prevEvolution_img) {
+                return { prevEvolution_img: "egg.png", evolutionChain_pre_name };
+            }
+            return { prevEvolution_img, evolutionChain_pre_name };
         }
         catch (error) {
             console.error("Ocorreu um erro ao buscar a evolução anterior:", error);
+            return { prevEvolution_img: "egg.png", evolutionChain_pre_name: 'poke baby' };
         }
     });
 }
@@ -149,7 +153,6 @@ function escolherPokemon(randomIndex, pokemonName) {
         try {
             const response = yield axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
             const pokemonImg = response.data.sprites.front_default;
-            console.log(`🚀 ~ file: main.ts:175 ~ escolherPokemon ~ response:`, response);
             var pokemonWeight = `${response.data.weight} Kg`;
             var pokemonHeight = `${response.data.height}0 Cm`;
             var pokemonType = "";
@@ -177,10 +180,20 @@ function escolherPokemon(randomIndex, pokemonName) {
             pokemonName = pokemonName ? pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1) : response.data.name.charAt(0).toUpperCase() + response.data.name.slice(1);
             for (let slot of slots) {
                 if (slot.querySelector('.pokename').innerHTML === '...' || slot.querySelector('.pokename').innerHTML === '') {
-                    const preEvolutionImgUrl = yield buscarPreEvolucao(response.data.id);
-                    if (preEvolutionImgUrl) {
-                        const preEvolutionElement = slot.querySelector('.pre-pokemon');
-                        preEvolutionElement.src = `${preEvolutionImgUrl}`;
+                    const resultado = yield buscarPreEvolucao(response.data.id);
+                    if (resultado) {
+                        const { prevEvolution_img, evolutionChain_pre_name } = resultado;
+                        if (prevEvolution_img) {
+                            const preEvolutionElement = slot.querySelector('.pre-pokemon');
+                            preEvolutionElement.src = `${prevEvolution_img}`;
+                        }
+                        if (evolutionChain_pre_name) {
+                            const span = slot.querySelector('.sub-header span:first-child');
+                            const span_ = slot.querySelector('.sub-header span:last-child');
+                            //  console.log(`🚀 ~ file: main.ts:211 ~ escolherPokemon ~ span:`, span);
+                            span.innerHTML += `${evolutionChain_pre_name.slice(0, 1).toUpperCase() + evolutionChain_pre_name.slice(1)}`;
+                            span_.innerHTML += `${pokemonName}`;
+                        }
                     }
                     switch (response.data["types"][0].type.name) {
                         case 'fire':
@@ -256,8 +269,6 @@ function escolherPokemon(randomIndex, pokemonName) {
                     pokemonImgElement.src = pokemonImg;
                     pokemonImgElement.alt = pokemonName;
                     pokemonImgElement.alt = pokemonName;
-                    console.log("Elemento para o nome:", slot.querySelector('.pokename'));
-                    console.log("Elemento para o peso:", slot.querySelector('.pokemonWeight'));
                     timeCompleto += 1;
                     break; // Saia do loop, pois você já preencheu um slot
                 }

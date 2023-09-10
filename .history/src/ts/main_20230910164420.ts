@@ -21,7 +21,7 @@ function gerarCards(): void {
   for (let i = 0; i < 6; i++) {
     cardsHTML += `<div id="bg" class="card  animated">
     <div class="card-header">
-      <div class="sub-header"><span class="header-desc">Evolves from </span>|<span class="header-desc"> to  </span></div>
+      <div class="sub-header"><span class="header-desc">Evolves from Charmeleon</span><span class="header-desc">Put Charizard on the stage | Pokemon</span></div>
       <div class="title">
         <h2 class="pokename">...</h2><p class="pokemonHp"> 0HP</p>
         <div class="type  type-icon icon-fire"></div>
@@ -110,7 +110,6 @@ async function carregarListaDePokemons() {
       let pokemonName = filtro.value;
       console.log(`🚀 ~ file: main.ts:109 ~ btnChoose.addEventListener ~ pokemonName:`, pokemonName);
       await escolherPokemon(NaN, pokemonName);
-      filtro.value = "";
     });
         btnCompartilhar.addEventListener("click", compartilharTime);
     btnGerarAleatorio.addEventListener("click", gerarPokemonAleatorio);
@@ -210,12 +209,12 @@ async function escolherPokemon(randomIndex: number, pokemonName?: string)  {
           }
 
           if (evolutionChain_pre_name) {
-            const span = slot.querySelector('.sub-header span:first-child') as HTMLElement;
-            const span_ = slot.querySelector('.sub-header span:last-child') as HTMLElement;
+            const span = document.querySelector('.sub-header span:first-child') as HTMLElement;
+            const span_ = document.querySelector('.sub-header span:last-child') as HTMLElement;
 
           //  console.log(`🚀 ~ file: main.ts:211 ~ escolherPokemon ~ span:`, span);
-            (span as HTMLSpanElement).innerHTML += `${evolutionChain_pre_name.slice(0, 1).toUpperCase() + evolutionChain_pre_name.slice(1)}`;
-            (span_ as HTMLSpanElement).innerHTML += `${pokemonName}`;
+            (span as HTMLSpanElement).innerHTML = `${evolutionChain_pre_name}`;
+            (span_ as HTMLSpanElement).innerHTML = `${pokemonName}`;
           }
           }
 

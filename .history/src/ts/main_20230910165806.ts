@@ -110,7 +110,6 @@ async function carregarListaDePokemons() {
       let pokemonName = filtro.value;
       console.log(`🚀 ~ file: main.ts:109 ~ btnChoose.addEventListener ~ pokemonName:`, pokemonName);
       await escolherPokemon(NaN, pokemonName);
-      filtro.value = "";
     });
         btnCompartilhar.addEventListener("click", compartilharTime);
     btnGerarAleatorio.addEventListener("click", gerarPokemonAleatorio);
@@ -214,7 +213,7 @@ async function escolherPokemon(randomIndex: number, pokemonName?: string)  {
             const span_ = slot.querySelector('.sub-header span:last-child') as HTMLElement;
 
           //  console.log(`🚀 ~ file: main.ts:211 ~ escolherPokemon ~ span:`, span);
-            (span as HTMLSpanElement).innerHTML += `${evolutionChain_pre_name.slice(0, 1).toUpperCase() + evolutionChain_pre_name.slice(1)}`;
+            (span as HTMLSpanElement).innerHTML += `${evolutionChain_pre_name}`;
             (span_ as HTMLSpanElement).innerHTML += `${pokemonName}`;
           }
           }

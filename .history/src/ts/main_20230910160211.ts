@@ -21,7 +21,7 @@ function gerarCards(): void {
   for (let i = 0; i < 6; i++) {
     cardsHTML += `<div id="bg" class="card  animated">
     <div class="card-header">
-      <div class="sub-header"><span class="header-desc">Evolves from </span>|<span class="header-desc"> to  </span></div>
+      <div class="sub-header"><span class="header-desc">Evolves from Charmeleon</span><span class="header-desc">Put Charizard on the stage | Pokemon</span></div>
       <div class="title">
         <h2 class="pokename">...</h2><p class="pokemonHp"> 0HP</p>
         <div class="type  type-icon icon-fire"></div>
@@ -110,7 +110,6 @@ async function carregarListaDePokemons() {
       let pokemonName = filtro.value;
       console.log(`🚀 ~ file: main.ts:109 ~ btnChoose.addEventListener ~ pokemonName:`, pokemonName);
       await escolherPokemon(NaN, pokemonName);
-      filtro.value = "";
     });
         btnCompartilhar.addEventListener("click", compartilharTime);
     btnGerarAleatorio.addEventListener("click", gerarPokemonAleatorio);
@@ -126,35 +125,33 @@ async function carregarListaDePokemons() {
 }
 
 
-type PreEvolucaoResultado =
-  | { prevEvolution_img: string; evolutionChain_pre_name: string }
-  | undefined;
 
-async function buscarPreEvolucao(pokemonName: string): Promise<PreEvolucaoResultado> {
+
+async function buscarPreEvolucao(pokemonName: string) {
   try {
     // Primeiro, obtenha o ID da cadeia de evolução do Pokémon
     const pokemonData = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`);
     const evolutionChain_pre_name = pokemonData.data.evolves_from_species?.name;
 
-            // Verifique se evolutionChain_pre_name é null ou undefined aqui
-        if (!evolutionChain_pre_name) {
-          return { prevEvolution_img: "egg.png", evolutionChain_pre_name: 'poke baby' };
-        }
+    const evolutionData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${evolutionChain_pre_name}`);
+    let prevEvolution_img = evolutionData.data.sprites.front_default;
 
-        const evolutionData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${evolutionChain_pre_name}`);
-        const prevEvolution_img = evolutionData.data.sprites.front_default;
-
-        if (!prevEvolution_img) {
-          return { prevEvolution_img: "egg.png", evolutionChain_pre_name };
-        }
-
-        return { prevEvolution_img, evolutionChain_pre_name };
-
-      } catch (error) {
-        console.error("Ocorreu um erro ao buscar a evolução anterior:", error);
-        return { prevEvolution_img: "egg.png", evolutionChain_pre_name: 'poke baby' };
-      }
+    if (
+      evolutionChain_pre_name === null ||
+      evolutionChain_pre_name === undefined ||
+      prevEvolution_img === null ||
+      prevEvolution_img === undefined
+    ) {
+      prevEvolution_img = "egg.png"
+      return  { prevEvolution_img, evolutionChain_pre_name }
+    } else {
+      return { prevEvolution_img, evolutionChain_pre_name };
     }
+  } catch (error) {
+    console.error("Ocorreu um erro ao buscar a evolução anterior:", error);
+    return undefined;
+  }
+}
 
 
 
@@ -168,6 +165,7 @@ async function escolherPokemon(randomIndex: number, pokemonName?: string)  {
   try {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${query}`);
     const pokemonImg = response.data.sprites.front_default;
+    console.log(`🚀 ~ file: main.ts:175 ~ escolherPokemon ~ response:`, response);
     var pokemonWeight = `${response.data.weight} Kg`;
     var pokemonHeight = `${response.data.height}0 Cm`;
     var pokemonType = "";
@@ -199,25 +197,19 @@ async function escolherPokemon(randomIndex: number, pokemonName?: string)  {
     for (let slot of slots) {
 
       if (slot.querySelector('.pokename')!.innerHTML === '...' || slot.querySelector('.pokename')!.innerHTML === '') {
-        const resultado = await buscarPreEvolucao(response.data.id);
+        const  { prevEvolution_img, evolutionChain_pre_name } = await buscarPreEvolucao(response.data.id);
 
-        if (resultado) {
-          const { prevEvolution_img, evolutionChain_pre_name } = resultado as { prevEvolution_img: string, evolutionChain_pre_name: string };
 
-          if (prevEvolution_img) {
-            const preEvolutionElement = slot.querySelector('.pre-pokemon') as HTMLElement;
-            (preEvolutionElement as HTMLImageElement).src = `${prevEvolution_img}`;
-          }
+    if (prevEvolution_img) {
+      const preEvolutionElement = slot.querySelector('.pre-pokemon') as HTMLElement;
 
-          if (evolutionChain_pre_name) {
-            const span = slot.querySelector('.sub-header span:first-child') as HTMLElement;
-            const span_ = slot.querySelector('.sub-header span:last-child') as HTMLElement;
+      (preEvolutionElement as HTMLImageElement).src = `${prevEvolution_img}`;
 
-          //  console.log(`🚀 ~ file: main.ts:211 ~ escolherPokemon ~ span:`, span);
-            (span as HTMLSpanElement).innerHTML += `${evolutionChain_pre_name.slice(0, 1).toUpperCase() + evolutionChain_pre_name.slice(1)}`;
-            (span_ as HTMLSpanElement).innerHTML += `${pokemonName}`;
-          }
-          }
+    }    if{evolutionChain_pre_name} {
+      const span = document.querySelector('.sub-header span:first-child') as  HTMLElement;
+
+      (span as HTMLSpanElement).innerHTML = `${evolutionChain_pre_name}`;
+    }
 
 
     switch (response.data["types"][0].type.name) {
@@ -300,7 +292,8 @@ async function escolherPokemon(randomIndex: number, pokemonName?: string)  {
       pokemonImgElement.alt = pokemonName!;
       pokemonImgElement.alt = pokemonName!;
 
-
+      console.log("Elemento para o nome:", slot.querySelector('.pokename'));
+      console.log("Elemento para o peso:", slot.querySelector('.pokemonWeight'))
       timeCompleto += 1;
       break;  // Saia do loop, pois você já preencheu um slot
     }
