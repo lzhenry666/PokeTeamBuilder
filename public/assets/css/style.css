@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --color1: rgb(0, 231, 255);
   --color2: rgb(255, 0, 231);
@@ -159,46 +160,186 @@ button {
   margin-top: 0.5em; }
 
 .card {
-  background-size: cover;
-  background-position: center;
-  border-radius: 5% / 3.5%;
+  margin: 10px auto;
+  width: 400px;
+  background: grey;
+  border-radius: 5px;
+  border: solid 15px #FFA808;
+  border: solid 15px #EDD721;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+  padding: 0 15px; }
+
+.card.florizard {
+  background: linear-gradient(to right, #3ca55c, #b5ac49);
+  background: linear-gradient(to left, #11998e, #38ef7d); }
+
+.card.blastoise {
+  background: linear-gradient(to left, #24c6dc, #514a9d); }
+
+.card-header {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
-  justify-content: center;
-  align-items: center;
-  background-size: cover;
-  background-position: center;
-  width: 20%;
-  height: 100%;
-  margin: 5em 3em 0.5em 0em;
-  background: url("https://i.pinimg.com/564x/7d/bd/b3/7dbdb375ede9e9db633e81f3191c926b.jpg");
-  background-size: cover;
+  justify-content: flex-end;
+  align-items: center; }
+
+.header-desc {
+  font-size: 11px;
+  margin: 0 5px 0 0; }
+
+.card-avatar, .title, .card-props {
+  width: 300px; }
+
+.avatar-container {
+  max-height: 250px;
   position: relative; }
-  .card > .card-front {
-    margin-top: 2em;
-    width: 100%;
-    height: 60vh;
-    justify-content: center;
-    align-items: center;
-    position: relative; }
-    .card > .card-front .pokemon-img {
-      width: 80%;
-      height: 50%;
-      margin-top: -1rem; }
-    .card > .card-front .infos {
-      position: absolute;
-      margin: 5rem 0 0 3rem;
-      font: 0.85em courier;
-      color: var(--text-color);
-      width: 85%;
-      font-weight: 600; }
-  .card > .card-back {
-    height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: cover; }
+
+.card-avatar {
+  height: 250px;
+  background-size: 90%, cover,100%, cover;
+  border: solid 5px #EDD721;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2); }
+
+/* Estilo inicial do elemento */
+.card-avatar.pre-evolution {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-size: 80%, cover;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  transition: all 0.3s ease;
+  /* Adiciona uma transição suave */ }
+
+/* Estilo quando o mouse passa sobre o elemento */
+.card-avatar.pre-evolution:hover {
+  height: 100px;
+  /* Aumenta o tamanho */
+  width: 100px;
+  /* Aumenta o tamanho */
+  top: -50px;
+  /* Ajusta a posição */
+  left: -50px;
+  /* Ajusta a posição */
+  z-index: 1;
+  /* Traz para o primeiro plano */
+  transform: scale(1.5);
+  /* Adiciona um efeito de zoom */ }
+
+/* Estilo do modal que aparecerá */
+.modal-circular {
+  display: none;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  line-height: 100px; }
+
+/* Faz o modal aparecer quando o mouse passa sobre o elemento */
+.card-avatar.pre-evolution:hover .modal-circular {
+  display: block; }
+
+.card-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; }
+
+.stage {
+  position: absolute;
+  top: -10px;
+  left: -3px;
+  width: auto;
+  font-size: 8px;
+  background: #EDD721;
+  padding: 5px;
+  display: inline-block;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-weight: bold; }
+
+h2 {
+  color: white; }
+
+h3 {
+  font-size: 14px;
+  color: deep-purple; }
+
+.title {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 35px;
+  /*width:100%;*/ }
+
+.type-icon {
+  border-radius: 50%;
+  height: 15px;
+  width: 15px; }
+
+.icon-fire {
+  background: url("https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Fire-Type-Symbol-Stencil-thumb.jpg");
+  background-size: cover;
+  mix-blend-mode: multiply;
+  border: solid 1px red; }
+
+.icon-water {
+  background: url("https://pm1.narvii.com/6260/537cde385c395ac71dc06ef3087b6ad541d396f4_hq.jpg");
+  background-size: cover;
+  border: solid 1px blue; }
+
+.icon-normal {
+  background: url("https://yorvi.github.io/personal-pokedex/images/normal-type.png") no-repeat;
+  background-size: cover;
+  border: solid 1px black; }
+
+.card-props {
+  background: #EDD721;
+  color: #444;
+  padding: 5px 15px;
+  box-sizing: border-box;
+  font-size: 11px;
+  margin: 5px 0;
+  box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+  width: auto;
+  padding: 5px 25px; }
+
+.card-props p {
+  display: inline-block;
+  margin-right: 10px;
+  /* Espaçamento à direita para separar os elementos */
+  color: #444;
+  font-weight: bold; }
+
+p {
+  font-size: 12px; }
+
+.card-icons {
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr); }
+
+.card-icons, .attack-value {
+  flex: 0; }
+
+.attack-container, .power-container {
+  display: flex;
+  padding: 0 0 15px 0; }
+
+.attack-title, .power-stats {
+  flex: 1; }
+
+.attack-content, .power-content {
+  flex: 2; }
+
+.attributes-container {
+  display: flex;
+  justify-content: space-between; }
+
+.retreat-container {
+  display: flex; }
 
 .popup-evolucoes {
   display: none; }
