@@ -425,19 +425,13 @@ h3{
   /*width:100%;*/
 }
 
-.type-icon{
+.type{
   border-radius:50%;
   height:15px;
   width:15px;
 }
 
-.icon-fire{
-  background:url('https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Fire-Type-Symbol-Stencil-thumb.jpg');
-  background-size:cover;
-  mix-blend-mode: multiply;
-  border:solid 1px red;
-  //background:red;
-}
+
 
 .icon-water{
   background:url('https://pm1.narvii.com/6260/537cde385c395ac71dc06ef3087b6ad541d396f4_hq.jpg');
@@ -500,18 +494,45 @@ p{
   //text-align:center;
 }
 
-.attributes-container{
-  display:flex;
-  justify-content:space-between;
-}
 
-.retreat-container {
-  display:flex;
-}
 
 
 
 
 .popup-evolucoes{
   display: none;
+}
+
+.type-img{
+  width: 1rem;
+
+}
+.type-img:hover{
+  transform: scale(2.5);
+}
+
+.tooltip {
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  padding: 5px;
+  z-index: 1000;
+}
+.attributes-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.weakness-container, .advantage-container, .resistance-container {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.resistance, .weaknesses, .advantage {
+  margin-right: 1em; /* Espaço à direita para separar do container de imagens */
+}
+
+.weakness-container img, .advantage-container img, .resistance-container img {
+
+  margin-right: 0.3rem;
 }
