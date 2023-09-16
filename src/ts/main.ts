@@ -903,6 +903,8 @@ async function gerarTimeAleatorio() {
 }
 
 function resetarTime() {
+
+  pokemonsEscolhidos = [];
   for (let slot of slots) {
     slot.querySelector("span")!.innerText = "";
     const pokemonImgElement = slot.querySelector(
